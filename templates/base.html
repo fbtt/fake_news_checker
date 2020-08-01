@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>De Olho</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        .redText {
+            color: red;
+        }
+    </style>
+
 </head>
+
 <body>
-    <h2>Testing to see if it words!</h2>
+
+    <nav>
+        <div class="container nav-wrapper">
+            <a href="/" class="brand-logo">De Olho</a>
+            <ul id="nav-mobile" class="right">
+                <li><a href="/">Dicas para checagem de notícias</a></li>
+                <li><a href="/">Sobre o projeto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+    
+        <h2>Cole o texto de uma notícia abaixo a pressione o botão</h2>
+
+        <form action="{% url 'new_check' %}" method="post">
+            {% csrf_token %}
+            <div class="input-field">
+                <textarea id="textarea1" class="materialize-textarea" name="news_content"
+                    placeholder="Insira aqui o texto de sua notícia"></textarea>
+                <label for="textarea1">Notícia</label>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Verificar</button>
+            </div>
+        </form>
+
+        {% block content %}
+
+        {% endblock content %}
+
+    </div>
+
 </body>
+
 </html>
