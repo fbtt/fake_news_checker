@@ -6,6 +6,7 @@ astroid==2.4.0
 astunparse==1.6.3
 atomicwrites==1.4.0
 attrs==19.3.0
+autobahn==20.7.1
 Automat==20.2.0
 autopep8==1.4.4
 Babel==2.8.0
@@ -26,6 +27,7 @@ constantly==15.1.0
 cryptography==2.9.2
 cssselect==1.1.0
 cycler==0.10.0
+daphne==2.5.0
 decorator==4.4.2
 defusedxml==0.6.0
 diff-match-patch==20181111
@@ -186,6 +188,7 @@ tornado==6.0.4
 tqdm==4.46.0
 traitlets==4.3.3
 Twisted==20.3.0
+txaio==20.4.1
 ujson==1.35
 urllib3==1.25.8
 w3lib==1.20.0
