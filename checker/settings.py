@@ -25,7 +25,11 @@ SECRET_KEY = 'r@p#nuz61&2wvx3leil+23&64u*g_3sdhcs*l%u#g=d$xg28gz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'fake-news-checkr.herokuapp.com',
+    'fake.tribotech.org',
+]
 
 
 # Application definition
@@ -120,3 +124,4 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
