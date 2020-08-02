@@ -25,7 +25,11 @@ SECRET_KEY = 'r@p#nuz61&2wvx3leil+23&64u*g_3sdhcs*l%u#g=d$xg28gz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'fake-news-checkr.herokuapp.com',
+    'fake.tribotech.org',
+]
 
 
 # Application definition
@@ -55,7 +59,7 @@ ROOT_URLCONF = 'checker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,3 +123,5 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
