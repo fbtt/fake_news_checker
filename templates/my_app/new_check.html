@@ -2,9 +2,15 @@
 
 {% block content %}
 
-<h2>Essa notícia parecer ser <span class="redText">{{ veracidade }} </span>!</h2>
+<h4>
+    Essa notícia parece ser
+    {% if veracidade == 'FALSA' %}
+        <span class="redText">FALSA</span>
+    {% else %}
+        <span class="greenText">VERDADEIRA</span>
+    {% endif %}</span>!
+</h4>
 
-<h2>Consulte outras fontes.</h2>
-
+<h4>Recomendamos que você verifique outras fontes</h4>
 
 {% endblock content %}

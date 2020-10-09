@@ -4,20 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>De Olho</title>
-    {% comment %}
-    <link rel="stylesheet" href="static_root/css/style.css"> {% endcomment %}
+    <title>Verificador de Fake News</title>
+    <link rel="stylesheet" href="static/css/style.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <style>
-        h2 {
+        h3 {
             text-align: center;
         }
 
         .redText {
+            color: red;
+        }
+
+        .greenText {
+            color: green;
+        }
+
+        .heart {
             color: red;
         }
     </style>
@@ -26,27 +33,38 @@
 
 <body>
 
-    <nav>
+    <nav class="green darken-3">
         <div class="container nav-wrapper">
-            <a href="/" class="brand-logo">De Olho</a>
+            <a href="/" class="brand-logo">Verificador de Fake News</a>
             <ul id="nav-mobile" class="right">
-                <li><a href="/">Dicas para checagem de notícias</a></li>
+                <li><a href="/">Dicas de checagem</a></li>
                 <li><a href="/">Sobre o projeto</a></li>
             </ul>
         </div>
     </nav>
 
+    <main>
+
     <div class="container">
 
-        <h2>Cole o texto de uma notícia abaixo a pressione o botão</h2>
+        {% comment %} <h3>Cole o texto de uma notícia abaixo a pressione o botão "verificar"</h3> {% endcomment %}
 
+    <div class="container">
+        <h3>Vamos combater as Fake News?</h3>
+        <p>Ao inserir uma notícia no campo abaixo e clicar em "verificar", nosso sistema irá avaliar sua veracidade, transformando o conteúdo textual através de técnicas estatísticas e aplicando um algorítmo de aprendizado de máquina.</p>
+        <p>Obs: Insira a notícia completa.</p>
+        <p>Para mais informações sobre o projeto, clique em <i>Sobre o projeto.</i></p>
+        <p>Para conferir dicas de checagem, clique em <i>Dicas de checagem.</i></p>
+        <p>Recomendamos fortemente que você sempre verifique outras fontes.</p>
+        <br>
+    <div>
         <form action="{% url 'new_check' %}" method="post">
             {% csrf_token %}
             <div class="input-field">
                 <textarea id="textarea1" class="materialize-textarea" name="news_content"
                     placeholder="Insira aqui o texto de sua notícia"></textarea>
                 <label for="textarea1">Notícia</label>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Verificar</button>
+                <button class="btn waves-effect waves-light green darken-3" type="submit" name="action">Verificar</button>
             </div>
         </form>
 
@@ -55,6 +73,32 @@
         {% endblock content %}
 
     </div>
+
+    </main>
+
+    <footer class="page-footer green darken-3">
+        {% comment %} <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">Made with <3</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Contact</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/fernando-battisti/">Linkedin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <div class="footer-copyright">
+            <div class="container">
+                © 2020
+                <a class="grey-text text-lighten-4 right">Made with <span class="redText">♥</span> by Fernando Battisti</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

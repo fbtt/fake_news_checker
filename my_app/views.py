@@ -1,19 +1,18 @@
 from django.shortcuts import render
-import tensorflow as tf
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+import sklearn
 import pandas as pd
 import pickle
 import re
 
 
 # loading model
-model = tf.keras.models.load_model("my_keras_model.h5")
+with open('clf_logistic_regression.pickle', 'rb') as handle:
+    clf_logistic_regression = pickle.load(handle)
+
 
 # loading tokenizer
-with open('tokenizer.pickle', 'rb') as handle:
-    tokenizer = pickle.load(handle)
-
-# ------------------ temp code ------------------
+with open('vectorizer_logistic_regression.pickle', 'rb') as handle:
+    vectorizer_tfidf = pickle.load(handle)
 
 
 # lower case all data
@@ -65,26 +64,13 @@ def pre_processing(df):
 
 
 def predict(sample_text):
+    """ This function receives a string containing the textual content and returns its veracity """
 
     df = pd.DataFrame({'text': [sample_text]})
-
     df_preprocessed = pre_processing(df)
-
-    encoded_doc = tokenizer.texts_to_sequences(df_preprocessed['text'])
-
-    sample_preprocessed = pad_sequences(encoded_doc,
-                                        padding='post',
-                                        truncating='post',
-                                        maxlen=1941
-                                        )
-
-    y_pred = model.predict(sample_preprocessed)
-    y_pred_rounded = y_pred[0][0].round()
-
-    if y_pred_rounded == 1.0:
-        str_y_pred = 'VERDADEIRA'
-    else:
-        str_y_pred = 'FALSA'
+    sample_preprocessed = vectorizer_tfidf.transform(df_preprocessed['text'])
+    y_pred = clf_logistic_regression.predict(sample_preprocessed)[0]
+    str_y_pred = 'FALSA' if (y_pred == 1) else 'VERDADEIRA'
 
     return str_y_pred
 
@@ -96,8 +82,6 @@ def home(request):
 def new_check(request):
 
     news_content = request.POST.get('news_content')
-
-    # Consulta modelo e retornar veracidade
     veracity = predict(news_content)
 
     frontend_context = {
